@@ -1,5 +1,13 @@
+<script>
+function findmea(val) {
+    console.log(val);
+}
+</script>
+
 <div x-data="{name:''}">
   <label for="name">Name:</label>
-  <input id="name" type="text" x-model="name" />
+  <input :myname="name" type="text" x-model="name"
+x-on:keyup="findmea($event.target.getAttribute('myname'))"
+         />
   <p x-text="name">
 </div>
