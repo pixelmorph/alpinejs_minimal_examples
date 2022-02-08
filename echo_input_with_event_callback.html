@@ -7,7 +7,7 @@ function findmea(val) {
 <div x-data="{name:''}">
   <label for="name">Name:</label>
   <input :myname="name" type="text" x-model="name"
-x-on:keyup="findmea($event.target.getAttribute('myname'))"
+         @keyup="findmea($event.target.getAttribute('myname'))"
          />
   <p x-text="name">
 </div>
