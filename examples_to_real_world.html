@@ -1,0 +1,24 @@
+<script>
+function BeEncapsulated(val) {
+  return {
+    name: '',
+    doSomething: function (value) {
+      var me = this; // because we will need the function's this in e.g. fetch blocks
+      fetch('https://some.host?whatever=' + value)
+        .then(response => response.json() )
+        .then( data => {
+          me.name = data.name
+        });
+    }
+}
+</script>
+
+<p>Most alpine examples you see use anonymous data structures in the initial <pre>x-data</pre> block.  Generally you won't want to do this except for the most trivial of examples.  The other thing illustrated here is aliasing the function's <pre>this</pre> value to something that can be used deep inside other functions where the current <pre>this> will be different</p>
+
+<div x-data="BeEncapsulated()">
+  <label for="name">Name:</label>
+  <input :myname="name" type="text" x-model="name"
+         @keyup="doSomething($event.target.getAttribute('myname'))"
+         />
+  <p x-text="name">
+</div>

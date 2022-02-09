@@ -4,7 +4,7 @@ These modern javascript frameworks often make me feel stupid.  One of the reason
 
 So here's a repo to store these examples.  The rules are:
 
-* No dependencies on alpine js.
+* No dependencies except alpine js.
 * Bare minimum example means just that.
 * Currently the examples are just snippets to paste into somewhere like [codepen](https://codepen.io/pen/).
 * The examples should be named for what they do.
