@@ -1,0 +1,135 @@
+<head>
+    <script defer src="https://unpkg.com/alpinejs@3.2.1/dist/cdn.min.js"></script>
+<style>
+
+    body {
+        background-color: #5a0272;
+        font-size: 14px;
+        text-align: left;
+        height: initial;
+    }
+
+    h2,
+    h3,
+    h4 {
+        color: black;
+        font-weight: 900;
+        text-transform: capitalize;
+    }
+
+    .page-content {
+        max-width: 95%;
+        margin: auto;
+    }
+
+    /* using grid here in 2 fractions/columns in mobile it will drop to one*/
+    .product-wrapper {
+        margin: 12px auto;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 25px;
+        background-color: white;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .product-title {
+        font-size: 22px;
+        line-height: 25px;
+        max-width: 300px;
+    }
+
+    .product-image {
+        max-width: 90%;
+        width: auto;
+    }
+
+    .product-speil {
+        margin: 15px 5px 0;
+    }
+
+@media screen and (max-width: 768px) {
+
+        body {
+            margin: 2px;
+        }
+
+        .product-wrapper {
+            grid-template-columns: 1fr;
+        }
+}
+</style>
+
+<!--                                                                                                                                                          -->
+<!-- var product_data = [                                                                                                                                     -->
+<!-- {                                                                                                                                                        -->
+<!--     long_description: "Product long description 0", // name of the item or group of items                                                                -->
+<!--     marketing_blurb: "Marketing blurb 0",           // Specifications of the item or sales text                                                          -->
+<!--     main_product_image: "https://image.com.au/e4886961e2f25777705334ec8412b3066ffdc3-28270.jpg",  //Full path to the main product image          -->
+<!--     extra_text: "this can now take simple html"                                                                                                                 -->
+<!--  }                                                                                                                                                       -->
+
+
+<!-- Data setup -->
+<script>
+
+    var product_data = [
+        {
+            id: 100,
+            long_description: "2 Pineapples",
+            marketing_blurb: "why have one pineapple when you can have two",
+            extra_text: "<p>Probably will leave your mouth furry when you eat them</p><em>Bromilade catus dont eatus</em><ul><li>We are a nice shade of yellow</li><li>Weight 7kgs Each</li><li>Pick up only</li></ul>",
+            main_product_image: "https://www.rd.com/wp-content/uploads/2021/04/GettyImages-1138179540-scaled.jpg",
+            prodcode: "25135054"
+        },
+        {
+            id: 101,
+            long_description: "happy cat",
+            marketing_blurb: "This cat is will tell you how it really feels",
+            extra_text: "<p>Added paper emoticons included</p><strong>Extra faces bonus pack available</strong><ul><li>Buck tooth yokal version shown</li><li>Only comes in ginger</li></ul>",
+            main_product_image: "https://www.rd.com/wp-content/uploads/2021/04/GettyImages-477174619-scaled-e1618863282435.jpg",
+            prodcode: "25135055"
+        },
+        {
+            id: 102,
+            long_description: "Anti gravity cat",
+            marketing_blurb: "This is a gray cat that defies gravity",
+            extra_text: "<p>Amazing gravity defing cat</p><strong>Will not ever land on floor!</strong><ul><li>The scrondingers cat of gravity</li><li>Weight cannot exceed 7kgs</li><li>Comes in grey! So it matches your decore</li></ul>",
+            main_product_image: "https://static01.nyt.com/images/2014/07/23/upshot/23UP-cat/23UP-cat-superJumbo.jpg?quality=75&auto=webp",
+            prodcode: "25135056"
+        }
+    ];
+</script>
+<!-- Custom function pours the data above into a variable to pour into the template-->
+<script>
+    function create_forms() {
+        return {
+            product_list: product_data,
+        }
+    }
+</script>
+</head>
+<!--declare x data  -->
+<div class="" x-data="create_forms()">
+    <div class="page-content">
+        <!-- template for="key in mame of variable":key="whatever" loops through data as long as there are no issues in the data ..
+             not working ?? check commas at the end of datablocks-->
+        <template x-for="item in product_list" :key="item">
+            <div class="product-wrapper">
+                <div> 
+                <!-- use x-bind to put data into a html attribute eg src, id,class-->
+                <a x-bind:href="item.main_product_image" ><img x-bind:src="item.main_product_image" class="product-image"/></a>
+                </div>
+            <div class="product-info"> 
+                <!-- use x-text to display data as text-->
+                <h2 class="product-title" x-text="item.long_description"></h2>
+                <p x-text="item.marketing_blurb" class="product-speil"></p>
+                 <!-- use x-html to display data as html eg text with html markup in the JSON-->
+                <p x-html="item.extra_text" class="product-speil"></p>
+            </div>
+        </template>
+    </div>
+</div>
+
+
